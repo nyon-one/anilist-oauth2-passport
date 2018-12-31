@@ -2,7 +2,7 @@ const passport = require('passport')
 const OAuth2Strategy = require('passport-oauth2')
 
 const keys = require('./keys')
-const axios = require('axios')
+
 
 passport.serializeUser((user, done) => {
     done(null, user.id)
@@ -12,9 +12,7 @@ passport.deserializeUser((id, done) => {
     done(null, id)
 })
 
-
 const graphApi = require('./api')
-
 
 passport.use(new OAuth2Strategy({
         authorizationURL: 'https://anilist.co/api/v2/oauth/authorize',
