@@ -5,7 +5,7 @@ const keys = require('./keys')
 
 
 passport.serializeUser((user, done) => {
-    done(null, user.id)
+    done(null, user)
 })
 
 passport.deserializeUser((id, done) => {
@@ -19,7 +19,7 @@ passport.use(new OAuth2Strategy({
         tokenURL: 'https://anilist.co/api/v2/oauth/token',
         clientID: keys.clientID,
         clientSecret: keys.clientSecret,
-        callbackURL: 'http://localhost:5000/anilist/callback'
+        callbackURL: 'http://localhost:5000/auth/callback'
     },
     (accessToken, refreshToken, profile, done) => {
         console.log('============')

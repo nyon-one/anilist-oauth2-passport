@@ -4,6 +4,7 @@ const app = express()
 
 const cookieSession = require('cookie-session')
 const passportSetup = require('./config/passport-setup');
+const authRoutes = require('./routes/auth-routes');
 
 app.set('view engine', 'ejs');
 
@@ -15,13 +16,13 @@ app.use(cookieSession({
 app.use(passport.initialize())
 app.use(passport.session())
 
+app.use('/auth', authRoutes);
 
-app.get('/anilist/callback', passport.authenticate('oauth2'), (req, res) => {
+app.get('/fav',(req, res)=>{
+    console.log(req.user);
+    
     res.send(req.user)
 })
-
-// app.get('/auth/anilist/',
-app.get('/', passport.authenticate('oauth2'))
 
 app.listen(5000, () => {
     console.log("listening on port 5000");
