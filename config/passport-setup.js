@@ -1,7 +1,11 @@
+require('dotenv').config()
+
 const passport = require('passport')
 const OAuth2Strategy = require('passport-oauth2')
 
-const keys = require('./keys')
+// const keys = require('./keys')
+
+console.log(process.env.CLIENT_ID)
 
 
 passport.serializeUser((user, done) => {
@@ -17,8 +21,8 @@ const graphApi = require('./api')
 passport.use(new OAuth2Strategy({
         authorizationURL: 'https://anilist.co/api/v2/oauth/authorize',
         tokenURL: 'https://anilist.co/api/v2/oauth/token',
-        clientID: keys.clientID,
-        clientSecret: keys.clientSecret,
+        clientID: process.env.CLIENT_ID,
+        clientSecret: process.env.CLIENT_SECRET,
         callbackURL: 'http://localhost:5000/auth/callback'
     },
     (accessToken, refreshToken, profile, done) => {
