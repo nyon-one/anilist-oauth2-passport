@@ -3,11 +3,6 @@ require('dotenv').config()
 const passport = require('passport')
 const OAuth2Strategy = require('passport-oauth2')
 
-// const keys = require('./keys')
-
-console.log(process.env.CLIENT_ID)
-
-
 passport.serializeUser((user, done) => {
     done(null, user)
 })
